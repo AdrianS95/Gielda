@@ -1,0 +1,9 @@
+﻿<Application x:Class="ATH_Giełda_Adrian_Smaza.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ATH_Giełda_Adrian_Smaza"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

@@ -1,0 +1,133 @@
+﻿<Window x:Class="ATH_Giełda_Adrian_Smaza.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ATH_Giełda_Adrian_Smaza"
+        xmlns:winformchart="clr-namespace:System.Web.UI.DataVisualization.Charting;assembly=System.Web.DataVisualization"
+        xmlns:OxyPlot1="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+         Title="ATH Giełda Analizer (beta 0.11)" Height="700" Width="1200" MinHeight="700" MinWidth="1400" MaxHeight="950" MaxWidth="1800">
+    <Grid Background= "WhiteSmoke" Margin="5px" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" MaxWidth="400" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35px" />
+            <RowDefinition />
+            <RowDefinition Height="35px"/>
+            <RowDefinition />
+            <RowDefinition Height="20px"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Margin="2px" FontSize="16" Content="Ustawienia" HorizontalContentAlignment="Center" FontWeight="Bold"  />
+
+        <Grid Grid.Column="0" Grid.Row="1" Margin="2px">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Jaka spółka" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Content="Co zrobić" HorizontalContentAlignment="Center"/>
+            <ComboBox Grid.Column="0" Grid.Row="1" VerticalContentAlignment ="Center"  Name="GameComboBox" Margin="2px" SelectionChanged="GameComboBox_SelectionChanged">
+            
+
+            </ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="1" VerticalContentAlignment ="Center" Name="GameOptionComboBox" Margin="2px" SelectionChanged="GameOptionComboBox_SelectionChanged"/>
+
+
+
+            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" Content="Data" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Content="Zadres analizy (ile notowań)" HorizontalContentAlignment="Center"/>
+            <DatePicker Grid.Column="0" Grid.Row="3" VerticalContentAlignment ="Center" Name="DateGame" Margin="2px"/>
+            <ComboBox Grid.Column="1" Grid.Row="3" VerticalContentAlignment ="Center" Name="GamePrecisionComboBox" Margin="2px" SelectionChanged="GamePrecisionComboBox_SelectionChanged"/>
+
+            <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Bottom" Content="Typ Analizy" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" Content="Ocja X" HorizontalContentAlignment="Center"/>
+            <ComboBox Grid.Column="0" Grid.Row="5" VerticalContentAlignment ="Center" Name="TypeAnaliz" Margin="2px" SelectionChanged="GameComboBox_SelectionChanged"/>
+            <ComboBox Grid.Column="1" Grid.Row="5" VerticalContentAlignment ="Center" Name="OcjaX" Margin="2px"  SelectionChanged="GameOptionComboBox_SelectionChanged"/>
+
+
+            <Button Grid.Column="0" Grid.Row="6" Margin="2px" Name="GameLoadDataButton" Background="LightGreen" Content="Pobierz dane" HorizontalContentAlignment="Center" Click="GameLoadDataButton_Click"></Button>
+            <Button Grid.Column="1" Grid.Row="6" Margin="2px" Name="GameScoreButton" Content="Ostatnie notowania" HorizontalContentAlignment="Center" Click="GameScoreButton_Click"></Button>
+
+            <Button Grid.Column="0" Grid.Row="7" Margin="2px" Name="GameChart" Content="Generuj wykres" HorizontalContentAlignment="Center" Click="GameTypeButton_Click"></Button>
+            <Button Grid.Column="1" Grid.Row="7"  Margin="2px" Name="GameAnalaizerButton" Content="Analizuj" HorizontalContentAlignment="Center"  Click="GameAnalaizerButton_Click"></Button>
+
+        </Grid>
+        <Label Grid.Column="1" Name="ChartNameLabel" Grid.Row="0" VerticalAlignment="Bottom" Margin="2px" FontSize="16"  Content="Wykres" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0,0,3,0" Background="White" >
+            <lvc:CartesianChart  x:Name="Chart" LegendLocation="Right" ScrollMode="X" Zoom="X" Loaded="CartesianChart_Loaded" >
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Wartość" x:Name="YAxis"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Notowanie" x:Name="XAxis"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </Grid>
+
+        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" Margin="2px" FontSize="16" Content="CPU + RAM + Operacje " HorizontalContentAlignment="Center" FontWeight="Bold"/>
+
+        <Grid Grid.Column="0" Grid.Row="3" Background="White" Margin="5px">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.12*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0.12*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+
+                <Label Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment ="Center" Background="White">CPU</Label>
+                <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment ="Center" Background="White">RAM</Label>
+
+                <ProgressBar Grid.Column="1" Grid.Row="0" Margin="8px" Name="CPUUseProgressBar" ValueChanged="PCUUseProgressBar_ValueChanged"></ProgressBar>
+                <ProgressBar Grid.Column="1" Grid.Row="1" Margin="8px" Name="RAMUseProgressBar" ValueChanged="RAMUseProgressBar_ValueChanged"></ProgressBar>
+
+                <Label Grid.Column="2" VerticalContentAlignment ="Center" Grid.Row="0" Name="CPUpr" HorizontalContentAlignment="Center" >CPU</Label>
+                <Label Grid.Column="2" VerticalContentAlignment ="Center" Grid.Row="1" Name="RAMpr" HorizontalContentAlignment="Center" >RAM</Label>
+
+
+            </Grid>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="3">
+                <TextBox    TextWrapping="Wrap" AcceptsReturn="True" Name="GameOutputControlTextBlock" Margin="5px" ></TextBox>
+
+            </ScrollViewer>
+
+        </Grid>
+
+
+        <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Margin="2px" FontSize="16" Content="Wynik" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="3">
+            <TextBox  TextWrapping="Wrap" AcceptsReturn="True" Name="GameOutputDataTextBlock"  Margin="5px" Background="White" ></TextBox>
+        </ScrollViewer>
+        <Label Grid.Column="0" Grid.Row="4" Margin="0px" FontSize="8" Content="Aplikacja zaliczeniowa Przedmiot ZTP." HorizontalContentAlignment="Left" />
+        <Label Grid.Column="1" Grid.Row="4" Margin="0px" FontSize="8" Content="Autor: Adrian Smaza. Wszelkie prawa zastrzeżone." HorizontalContentAlignment="Right" />
+
+    </Grid>
+</Window>
